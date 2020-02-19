@@ -1,10 +1,10 @@
 import React from 'react'
-import Styles from '../styles/AppStyle.js'
+import Styles from '../styles/NavStyle.js'
 
 export default function NavBar () {
     return (
         <div>
-            <div style={{ display: 'block', margin: '20px 100px 20px 100px'}}>
+            <div style={{ margin: '20px 100px 20px 100px'}}>
                 <Styles.LogoContainer>
                     <Styles.Logo src="./assets/Zero.png" />
                 </Styles.LogoContainer>
