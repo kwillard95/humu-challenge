@@ -4,7 +4,7 @@ import DataVisual from './DataVisual.jsx'
 
 export default function App() {
     return (
-        <div>
+        <div style={{fontFamily: 'helvetica'}}>
             <NavBar/>
             <DataVisual />
         </div>

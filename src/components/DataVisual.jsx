@@ -58,8 +58,8 @@ export default function DataVisual() {
     let topPadding = 0;
 
     return (
-        <div style={{ margin: '20px 110px 20px 110px' }}>
-            <h1>
+        <div style={{ margin: '40px 110px 20px 110px' }}>
+            <h1 style={{fontSize: '20px'}}>
                 Departments
           </h1>
             <div>
@@ -76,10 +76,10 @@ export default function DataVisual() {
                             borderTop: '4px solid' + color,
                             borderLeft: '1px solid' + color
                         }}>
-                            <div style={{ position: 'relative', top: topPadding + 'px', left: '5px' }}>
-                                <div><b>{dept.department}</b></div>
-                                <div>{dept.leader}</div>
-                                <div>{dept.employeeCount} employees</div>
+                            <div style={{ position: 'relative', top: topPadding + 'px' }}>
+                                <Styles.Text><b>{dept.department}</b></Styles.Text>
+                                <Styles.Text>{dept.leader}</Styles.Text>
+                                <Styles.Text>{dept.employeeCount} employees</Styles.Text>
                             </div>
 
                         </Styles.Bar>

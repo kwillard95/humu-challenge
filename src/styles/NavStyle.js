@@ -14,8 +14,9 @@ object-fit: contain
 `
 Styles.Nav = styled.div`
 float: right;
+font-size: 12px;
 display: inline-block;
-color: blue;
+color: #2892de;
 margin-bottom: 15px;
 padding-right: 30px
 `
