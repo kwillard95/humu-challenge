@@ -40,15 +40,14 @@ export default function DataVisual() {
             }
         }
 
-        for (let el of deptArr) {
-            let percentage = Math.floor((el.employeeCount / sumOfAllDepts) * 100);
-            el.percentage = percentage;
+        for (let dept of deptArr) {
+            let percentage = Math.floor((dept.employeeCount / sumOfAllDepts) * 100);
+            dept.percentage = percentage;
         }
         return deptArr;
     }
 
-    const deptObj = employeesByDept(employeeData);
-    const deptArr = containerLengths(deptObj);
+    const deptArr = containerLengths(employeesByDept(employeeData));
     const colors = ['#bd10e0', '#4a90e2', '#50e3c2', '#b8e986', '#7ed321', '#417505', '#f8e71c', '#f5a623', '#9b9b9b'];
 
     deptArr.sort((a, b) => {
