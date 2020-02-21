@@ -12,7 +12,8 @@ export default function DataVisual() {
                 deptObj.Sales.employeeCount++;
             } else if (!deptObj[dept]) {
                 deptObj[dept] = {
-                    leader: data[i].firstName + data[i].lastName,
+                    firstName: data[i].firstName,
+                    lastName: data[i].lastName,
                     employeeCount: 1
                 };
             } else {
@@ -79,7 +80,7 @@ export default function DataVisual() {
                         }}>
                             <div>
                                 <Styles.Text><b>{dept.department}</b></Styles.Text>
-                                <Styles.Text>{dept.leader.split(/(?=[A-Z])/).join(' ')}</Styles.Text>
+                                <Styles.Text>{dept.firstName} {dept.lastName}</Styles.Text>
                                 <Styles.Text>{dept.employeeCount} employees</Styles.Text>
                             </div>
 
