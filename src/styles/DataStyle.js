@@ -2,9 +2,21 @@ import styled from 'styled-components'
 
 const Styles = {}
 
+Styles.Header = styled.h1`
+margin: 40px 110px 0px 110px;
+font-size: 20px
+`
+
+Styles.Container = styled.div`
+margin: 20px 110px 20px 110px;
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap
+`
+
 Styles.Bar = styled.div`
-display: inline-block;
-font-size: 12px
+font-size: 12px;
+text-overflow: ellipsis
 `
 
 Styles.Text = styled.div`
