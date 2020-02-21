@@ -27,7 +27,7 @@ export default function DataVisual() {
         const deptArr = [];
         let sumOfAllDepts = 0;
         for (let dept in obj) {
-            if (dept === 'Residential Architecture' || dept === 'Commercial Architecture' || dept === 'Industrial Architecture') {
+            if (dept === 'Residential Architecture' || dept === 'Commercial Architecture' || dept === 'Industrial Architecture' || dept === 'Public Policy') {
                 let currentObj = obj[dept];
                 currentObj.department = dept;
                 deptArr.push(obj[dept]);
@@ -43,6 +43,7 @@ export default function DataVisual() {
     }
 
     const deptObj = employeesByDept(employeeData);
+    console.log(deptObj)
     const deptArr = containerLengths(deptObj);
     const colors = ['#bd10e0', '#4a90e2', '#50e3c2', '#b8e986', '#7ed321', '#417505', '#f8e71c', '#f5a623', '#9b9b9b']
     deptArr.sort((a, b) => {
@@ -58,18 +59,16 @@ export default function DataVisual() {
     let topPadding = 0;
 
     return (
-        <div style={{ margin: '40px 110px 20px 110px' }}>
-            <h1 style={{fontSize: '20px'}}>
+        <div>
+            <Styles.Header>
                 Departments
-          </h1>
-            <div>
-
-
+           </Styles.Header>
+            <Styles.Container>
                 {deptArr.map((dept) => {
                     const color = colors.shift();
                     borderLeftLength += 100;
                     topPadding += 20
-                    return (<span>
+                    return (
                         <Styles.Bar style={{
                             width: dept.percentage.toString() + '%',
                             height: borderLeftLength + 'px',
@@ -78,14 +77,14 @@ export default function DataVisual() {
                         }}>
                             <div style={{ position: 'relative', top: topPadding + 'px' }}>
                                 <Styles.Text><b>{dept.department}</b></Styles.Text>
-                                <Styles.Text>{dept.leader}</Styles.Text>
+                                <Styles.Text>{dept.leader.split(/(?=[A-Z])/).join(' ')}</Styles.Text>
                                 <Styles.Text>{dept.employeeCount} employees</Styles.Text>
                             </div>
 
                         </Styles.Bar>
-                    </span>)
+                    )
                 })}
-            </div>
+            </Styles.Container>
         </div>
     )
 }
