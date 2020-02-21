@@ -8,10 +8,12 @@ export default function DataVisual() {
         deptObj = deptObj || {};
         for (var i = 0; i < data.length; i++) {
             var dept = data[i].department;
-            if (!deptObj[dept]) {
+            if (dept.includes('Sales') && dept !== 'Sales') {
+                deptObj.Sales.employeeCount++;
+            } else if (!deptObj[dept]) {
                 deptObj[dept] = {
                     leader: data[i].firstName + data[i].lastName,
-                    employeeCount: 0
+                    employeeCount: 1
                 };
             } else {
                 deptObj[dept].employeeCount++;
@@ -27,11 +29,14 @@ export default function DataVisual() {
         const deptArr = [];
         let sumOfAllDepts = 0;
         for (let dept in obj) {
-            if (dept === 'Residential Architecture' || dept === 'Commercial Architecture' || dept === 'Industrial Architecture' || dept === 'Public Policy') {
+            if (dept !== 'intervieworg') {
                 let currentObj = obj[dept];
                 currentObj.department = dept;
                 deptArr.push(obj[dept]);
-                sumOfAllDepts += deptObj[dept].employeeCount;
+                if (currentObj.employeeCount < 10) {
+                    currentObj.employeeCount = 100;
+                }
+                sumOfAllDepts += currentObj.employeeCount;
             }
         }
 
@@ -43,9 +48,9 @@ export default function DataVisual() {
     }
 
     const deptObj = employeesByDept(employeeData);
-    console.log(deptObj)
     const deptArr = containerLengths(deptObj);
-    const colors = ['#bd10e0', '#4a90e2', '#50e3c2', '#b8e986', '#7ed321', '#417505', '#f8e71c', '#f5a623', '#9b9b9b']
+    const colors = ['#bd10e0', '#4a90e2', '#50e3c2', '#b8e986', '#7ed321', '#417505', '#f8e71c', '#f5a623', '#9b9b9b'];
+
     deptArr.sort((a, b) => {
         if (a.employeeCount > b.employeeCount) {
             return -1;
@@ -55,8 +60,7 @@ export default function DataVisual() {
         return 0
     })
 
-    let borderLeftLength = 0;
-    let topPadding = 0;
+    let borderLength = 40;
 
     return (
         <div>
@@ -66,16 +70,15 @@ export default function DataVisual() {
             <Styles.Container>
                 {deptArr.map((dept) => {
                     const color = colors.shift();
-                    borderLeftLength += 100;
-                    topPadding += 20
+                    borderLength += 30;
                     return (
                         <Styles.Bar style={{
                             width: dept.percentage.toString() + '%',
-                            height: borderLeftLength + 'px',
+                            height: borderLength + 'px',
                             borderTop: '4px solid' + color,
                             borderLeft: '1px solid' + color
                         }}>
-                            <div style={{ position: 'relative', top: topPadding + 'px' }}>
+                            <div>
                                 <Styles.Text><b>{dept.department}</b></Styles.Text>
                                 <Styles.Text>{dept.leader.split(/(?=[A-Z])/).join(' ')}</Styles.Text>
                                 <Styles.Text>{dept.employeeCount} employees</Styles.Text>
