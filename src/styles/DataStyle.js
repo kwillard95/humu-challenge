@@ -10,18 +10,23 @@ font-size: 20px
 Styles.Container = styled.div`
 margin: 20px 110px 20px 110px;
 display: flex;
-flex-direction: row;
-flex-wrap: nowrap
+flex-direction: row
 `
 
 Styles.Bar = styled.div`
+display: flex;
+justify-content: flex-end;
+flex-direction: column;
 font-size: 12px;
-text-overflow: ellipsis
 `
 
 Styles.Text = styled.div`
 padding-bottom: 2px;
-padding-left: 5px
+padding-left: 5px;
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+flex-wrap: nowrap
 `
 
 export default Styles
